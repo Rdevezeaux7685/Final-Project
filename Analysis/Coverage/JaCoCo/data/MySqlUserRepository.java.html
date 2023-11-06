@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MySqlUserRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">MySqlUserRepository.java</span></div><h1>MySqlUserRepository.java</h1><pre class="source lang-java linenums">package data;
+
+import data.util.MySqlConnection;
+import domain.User;
+import util.MovieException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+<span class="nc" id="L14">public class MySqlUserRepository implements UserRepository{</span>
+
+<span class="nc" id="L16">    private static final Logger LOGGER = Logger.getLogger(MySqlUserRepository.class.getName());</span>
+
+    private static final String SQL_SELECT_USERS = &quot;select * from users where username = ?&quot;;
+
+    private static final String SQL_INSERT_USERS = &quot;insert into users (username, password) values (?,?)&quot;;
+
+
+    @Override
+    public User getUser(String login) {
+<span class="nc" id="L25">        try(Connection con = MySqlConnection.getConnection();</span>
+<span class="nc" id="L26">            PreparedStatement stmt = con.prepareStatement(SQL_SELECT_USERS)) {</span>
+
+<span class="nc" id="L28">            stmt.setString(1, login);</span>
+<span class="nc" id="L29">            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</span>
+<span class="nc" id="L30">            try(ResultSet rs = stmt.executeQuery()){</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if(rs.next()){ //cause only 1 or 0 result possible</span>
+<span class="nc" id="L32">                    return new User(rs.getString(&quot;username&quot;), rs.getString(&quot;password&quot;));</span>
+                }
+                else {
+<span class="nc" id="L35">                    return null;</span>
+                }
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            }</span>
+
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        } catch (SQLException ex) {</span>
+<span class="nc" id="L40">            LOGGER.log(Level.SEVERE, &quot;Enable to get user&quot;, ex);</span>
+<span class="nc" id="L41">            throw new MovieException(&quot;Enable to get user&quot;);</span>
+        }
+    }
+
+    @Override
+    public void registerNewUser(User user) {
+<span class="nc" id="L47">        try(Connection con = MySqlConnection.getConnection();</span>
+<span class="nc" id="L48">            PreparedStatement stmt = con.prepareStatement(SQL_INSERT_USERS)) {</span>
+<span class="nc" id="L49">            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</span>
+<span class="nc" id="L50">            stmt.setString(1, user.getUsername());</span>
+<span class="nc" id="L51">            stmt.setString(2, user.getPassword());</span>
+
+<span class="nc" id="L53">            stmt.executeUpdate();</span>
+<span class="nc" id="L54">        } catch (SQLException ex) {</span>
+<span class="nc" id="L55">            LOGGER.log(Level.SEVERE, &quot;Enable to add user&quot;, ex);</span>
+<span class="nc" id="L56">            throw new MovieException(&quot;Enable to add user&quot;);</span>
+<span class="nc" id="L57">        }</span>
+<span class="nc" id="L58">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > MySqlConnection</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">data.util</a>
+</div>
+
+<h1>Coverage Summary for Class: MySqlConnection (data.util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MySqlConnection</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package data.util;
+&nbsp;
+&nbsp;import util.Config;
+&nbsp;import util.Crypto;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.DriverManager;
+&nbsp;import java.sql.SQLException;
+&nbsp;
+&nbsp;public class MySqlConnection {
+&nbsp;    private static final String KEY_DB_URL= &quot;db.url&quot;;
+&nbsp;    private static final String KEY_DB_USERNAME= &quot;db.username&quot;;
+&nbsp;    private static final String KEY_DB_PASSWORD= &quot;db.password&quot;;
+&nbsp;    private static String url;
+&nbsp;    private static String username;
+&nbsp;    private static String password;
+&nbsp;
+&nbsp;    static {
+<b class="nc">&nbsp;        String usernameEncrypted = Config.getInstance().readSetting(KEY_DB_USERNAME);</b>
+<b class="nc">&nbsp;        String passwordEncrypted = Config.getInstance().readSetting(KEY_DB_PASSWORD);</b>
+<b class="nc">&nbsp;        Crypto crypto = Crypto.getInstance();</b>
+<b class="nc">&nbsp;        username= crypto.decrypt(usernameEncrypted);</b>
+<b class="nc">&nbsp;        password= crypto.decrypt(passwordEncrypted);</b>
+<b class="nc">&nbsp;        url= Config.getInstance().readSetting(KEY_DB_URL);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    private MySqlConnection() {
+&nbsp;    }
+&nbsp;
+&nbsp;    public static Connection getConnection() throws SQLException {
+<b class="nc">&nbsp;        return DriverManager.getConnection(url,username,password);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-06 13:12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">util</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums">package util;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Config {
+    private static final String CONFIG_FILE = &quot;/config/config.properties&quot;;
+<span class="nc" id="L11">    private static final Config INSTANCE = new Config();</span>
+<span class="nc" id="L12">    private final Properties properties = new Properties();</span>
+<span class="nc" id="L13">    private static final Logger LOGGER = Logger.getLogger(Config.class.getName());</span>
+
+<span class="nc" id="L15">    private Config() {</span>
+<span class="nc" id="L16">        try (InputStream ris = getClass().getResourceAsStream(CONFIG_FILE)) {</span>
+<span class="nc" id="L17">            properties.load(ris);</span>
+<span class="nc" id="L18">        } catch (IOException ex) {</span>
+<span class="nc" id="L19">            LOGGER.log(Level.SEVERE,</span>
+                    &quot;Unable to read config file&quot;, ex);
+<span class="nc" id="L21">            throw new MovieException(&quot;Unable to load configuration.&quot;);</span>
+<span class="nc" id="L22">        }</span>
+<span class="nc" id="L23">    }</span>
+
+    public static Config getInstance() {
+<span class="nc" id="L26">        return INSTANCE;</span>
+    }
+
+    public String readSetting(String key, String defaultValue) {
+<span class="nc" id="L30">        return properties.getProperty(key, defaultValue);</span>
+    }
+
+    public String readSetting(String key) {
+<span class="nc" id="L34">        return readSetting(key, null);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

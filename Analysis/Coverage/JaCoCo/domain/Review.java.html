@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Review.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">Review.java</span></div><h1>Review.java</h1><pre class="source lang-java linenums">package domain;
+
+import java.util.Objects;
+
+public class Review {
+    public static final int NO_ID_ASSIGNED = -1;
+
+    private final int movieId;
+    private final String review;
+    private final int score;
+    private int id;
+
+
+<span class="fc" id="L14">    public Review(int id, int movieId, String review, int score) {</span>
+<span class="fc" id="L15">        this.movieId = movieId;</span>
+<span class="fc" id="L16">        this.review = review;</span>
+<span class="fc" id="L17">        this.score = score;</span>
+<span class="fc" id="L18">        this.id = id;</span>
+<span class="fc" id="L19">    }</span>
+
+    public Review(int movieId, String review, int score) {
+<span class="nc" id="L22">        this(NO_ID_ASSIGNED, movieId, review, score);</span>
+<span class="nc" id="L23">    }</span>
+
+    public int getMovie() {
+<span class="nc" id="L26">        return movieId;</span>
+    }
+
+    public String getReview() {
+<span class="nc" id="L30">        return review;</span>
+    }
+
+    public int getScore() {
+<span class="nc" id="L34">        return score;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L38">        this.id = id;</span>
+<span class="nc" id="L39">    }</span>
+
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (this == o) return true;</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="nc" id="L46">        Review review = (Review) o;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        return id == review.id;</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L52">        return Objects.hash(id);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L57">        return &quot;Review{&quot; +</span>
+                &quot;movie='&quot; + movieId + '\'' +
+                &quot;, review='&quot; + review + '\'' +
+                &quot;, id=&quot; + id +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

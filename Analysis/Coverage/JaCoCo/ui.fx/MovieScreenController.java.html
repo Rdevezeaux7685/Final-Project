@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieScreenController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">ui.fx</a> &gt; <span class="el_source">MovieScreenController.java</span></div><h1>MovieScreenController.java</h1><pre class="source lang-java linenums">package ui.fx;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import domain.Review;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import domain.Movie;
+import domain.MovieService;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import util.MovieException;
+
+
+<span class="nc" id="L18">public class MovieScreenController {</span>
+
+<span class="nc" id="L20">    private  MovieService service = new MovieService();</span>
+
+<span class="nc" id="L22">    public MovieScreenController() {</span>
+
+<span class="nc" id="L24">    }</span>
+    public void setService(MovieService service){
+<span class="nc" id="L26">        this.service = service;</span>
+<span class="nc" id="L27">        showReview();</span>
+<span class="nc" id="L28">    }</span>
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private ImageView imgCover;
+
+    @FXML
+    private ListView&lt;Movie&gt; lstResults;
+
+    @FXML
+    private Spinner&lt;Integer&gt; spnScore;
+
+    @FXML
+    private TextField txtReviewText;
+
+    @FXML
+    private TextField txtSearch;
+
+    @FXML
+    private ListView&lt;Review&gt; lstReview;
+
+
+
+    @FXML
+    void onAddReview(ActionEvent event) {
+       try {
+<span class="nc" id="L59">           service.addReview(lstResults.getSelectionModel().getSelectedItem(), txtReviewText.getText(), spnScore.getValue());</span>
+
+<span class="nc" id="L61">           Alert a = new Alert(Alert.AlertType.INFORMATION, &quot;Send&quot;);</span>
+<span class="nc" id="L62">           a.show();</span>
+       }
+<span class="nc" id="L64">       catch (MovieException ex){</span>
+<span class="nc" id="L65">           Alert a = new Alert(Alert.AlertType.ERROR, ex.getMessage());</span>
+<span class="nc" id="L66">           a.show();</span>
+<span class="nc" id="L67">       }</span>
+<span class="nc" id="L68">        showReview();</span>
+<span class="nc" id="L69">    }</span>
+
+    @FXML
+    void onDisplayMovie(ActionEvent event) {
+<span class="nc" id="L73">        Movie movie = lstResults.getSelectionModel().getSelectedItem();</span>
+<span class="nc" id="L74">        imgCover.setImage(new Image(movie.getCoverUrl()));</span>
+<span class="nc" id="L75">    }</span>
+
+    @FXML
+    void onSearch(ActionEvent event) {
+<span class="nc" id="L79">        lstResults.setItems(FXCollections.observableArrayList(</span>
+<span class="nc" id="L80">                service.getMovies(txtSearch.getText())</span>
+        ));
+<span class="nc" id="L82">    }</span>
+
+    @FXML
+    void initialize() {
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        assert imgCover != null : &quot;fx:id=\&quot;imgCover\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        assert lstResults != null : &quot;fx:id=\&quot;lstResults\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        assert lstReview != null : &quot;fx:id=\&quot;lstReview\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        assert spnScore != null : &quot;fx:id=\&quot;spnScore\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        assert txtReviewText != null : &quot;fx:id=\&quot;txtReviewText\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        assert txtSearch != null : &quot;fx:id=\&quot;txtSearch\&quot; was not injected: check your FXML file 'MovieReview.fxml'.&quot;;</span>
+<span class="nc" id="L92">    }</span>
+
+    void showReview(){
+<span class="nc" id="L95">        lstReview.setItems(FXCollections.observableArrayList(service.getReviews()));</span>
+<span class="nc" id="L96">    }</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

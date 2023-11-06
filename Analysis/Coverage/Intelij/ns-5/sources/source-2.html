@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > MovieScreenController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ui.fx</a>
+</div>
+
+<h1>Coverage Summary for Class: MovieScreenController (ui.fx)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MovieScreenController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ui.fx;
+&nbsp;import java.net.URL;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+&nbsp;import domain.Review;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import domain.Movie;
+&nbsp;import domain.MovieService;
+&nbsp;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import javafx.scene.image.Image;
+&nbsp;import javafx.scene.image.ImageView;
+&nbsp;import util.MovieException;
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;public class MovieScreenController {</b>
+&nbsp;
+<b class="nc">&nbsp;    private  MovieService service = new MovieService();</b>
+&nbsp;
+<b class="nc">&nbsp;    public MovieScreenController() {</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    public void setService(MovieService service){
+<b class="nc">&nbsp;        this.service = service;</b>
+<b class="nc">&nbsp;        showReview();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ResourceBundle resources;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private URL location;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ImageView imgCover;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ListView&lt;Movie&gt; lstResults;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Spinner&lt;Integer&gt; spnScore;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtReviewText;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtSearch;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ListView&lt;Review&gt; lstReview;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void onAddReview(ActionEvent event) {
+&nbsp;       try {
+<b class="nc">&nbsp;           service.addReview(lstResults.getSelectionModel().getSelectedItem(), txtReviewText.getText(), spnScore.getValue());</b>
+&nbsp;
+<b class="nc">&nbsp;           Alert a = new Alert(Alert.AlertType.INFORMATION, &quot;Send&quot;);</b>
+<b class="nc">&nbsp;           a.show();</b>
+&nbsp;       }
+<b class="nc">&nbsp;       catch (MovieException ex){</b>
+<b class="nc">&nbsp;           Alert a = new Alert(Alert.AlertType.ERROR, ex.getMessage());</b>
+<b class="nc">&nbsp;           a.show();</b>
+<b class="nc">&nbsp;       }</b>
+<b class="nc">&nbsp;        showReview();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void onDisplayMovie(ActionEvent event) {
+<b class="nc">&nbsp;        Movie movie = lstResults.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;        imgCover.setImage(new Image(movie.getCoverUrl()));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void onSearch(ActionEvent event) {
+<b class="nc">&nbsp;        lstResults.setItems(FXCollections.observableArrayList(</b>
+<b class="nc">&nbsp;                service.getMovies(txtSearch.getText())</b>
+&nbsp;        ));
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void initialize() {
+<b class="nc">&nbsp;        assert imgCover != null : &quot;fx:id=\&quot;imgCover\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+<b class="nc">&nbsp;        assert lstResults != null : &quot;fx:id=\&quot;lstResults\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+<b class="nc">&nbsp;        assert lstReview != null : &quot;fx:id=\&quot;lstReview\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+<b class="nc">&nbsp;        assert spnScore != null : &quot;fx:id=\&quot;spnScore\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+<b class="nc">&nbsp;        assert txtReviewText != null : &quot;fx:id=\&quot;txtReviewText\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+<b class="nc">&nbsp;        assert txtSearch != null : &quot;fx:id=\&quot;txtSearch\&quot; was not injected: check your FXML file &#39;MovieReview.fxml&#39;.&quot;;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    void showReview(){
+<b class="nc">&nbsp;        lstReview.setItems(FXCollections.observableArrayList(service.getReviews()));</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-06 13:12</div>
+</div>
+</body>
+</html>

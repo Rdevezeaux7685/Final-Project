@@ -1,0 +1,174 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=windows-1252"> 
+  <title>Coverage Report > MySqlReviewRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">data</a>
+</div>
+
+<h1>Coverage Summary for Class: MySqlReviewRepository (data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MySqlReviewRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package data;
+&nbsp;
+&nbsp;import data.util.MySqlConnection;
+&nbsp;import domain.Movie;
+&nbsp;import domain.Review;
+&nbsp;import domain.User;
+&nbsp;import util.MovieException;
+&nbsp;
+&nbsp;import java.sql.Connection;
+&nbsp;import java.sql.PreparedStatement;
+&nbsp;import java.sql.ResultSet;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.HashSet;
+&nbsp;import java.util.Set;
+&nbsp;import java.util.logging.Level;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+<b class="nc">&nbsp;public class MySqlReviewRepository implements ReviewRepository {</b>
+&nbsp;
+<b class="nc">&nbsp;    private static final Logger LOGGER = Logger.getLogger(MySqlReviewRepository.class.getName());</b>
+&nbsp;
+&nbsp;    private static final String SQL_SELECT_REVIEWS = &quot;select * from reviews where username = ?&quot;;
+&nbsp;
+&nbsp;    private static final String SQL_INSERT_REVIEW = &quot;insert into reviews (username, movie_id, review, score) values (?, ?, ?, ?)&quot;;
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Set&lt;Review&gt; getReviews(String username) {
+<b class="nc">&nbsp;        try (Connection con = MySqlConnection.getConnection();</b>
+<b class="nc">&nbsp;             PreparedStatement stmt = con.prepareStatement(SQL_SELECT_REVIEWS)) {</b>
+<b class="nc">&nbsp;            stmt.setString(1, username);</b>
+&nbsp;
+<b class="nc">&nbsp;            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;            try (ResultSet rs = stmt.executeQuery()) {</b>
+<b class="nc">&nbsp;                Set&lt;Review&gt; Review = new HashSet&lt;&gt;();</b>
+&nbsp;
+<b class="nc">&nbsp;                while (rs.next()) {</b>
+<b class="nc">&nbsp;                    Review.add(new Review(</b>
+<b class="nc">&nbsp;                            rs.getInt(&quot;id&quot;),</b>
+<b class="nc">&nbsp;                            rs.getInt(&quot;movie_id&quot;),</b>
+<b class="nc">&nbsp;                            rs.getString(&quot;review&quot;),</b>
+<b class="nc">&nbsp;                            rs.getInt(&quot;score&quot;)</b>
+&nbsp;                    ));
+&nbsp;                }
+<b class="nc">&nbsp;                return Review;</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            LOGGER.log(Level.SEVERE, &quot;Enable to retrieve reviews&quot;, ex);</b>
+<b class="nc">&nbsp;            throw new MovieException(&quot;Enable to retrieve reviews&quot;);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void addReview(int movieId, String review, Integer score, String username) {
+<b class="nc">&nbsp;        try(Connection con = MySqlConnection.getConnection();</b>
+<b class="nc">&nbsp;            PreparedStatement stmt = con.prepareStatement(SQL_INSERT_REVIEW)) {</b>
+<b class="nc">&nbsp;            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</b>
+<b class="nc">&nbsp;            stmt.setString(1, username);</b>
+<b class="nc">&nbsp;            stmt.setInt(2, movieId);</b>
+<b class="nc">&nbsp;            stmt.setString(3, review);</b>
+<b class="nc">&nbsp;            stmt.setInt(4, score);</b>
+<b class="nc">&nbsp;            stmt.executeUpdate();</b>
+&nbsp;
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            LOGGER.log(Level.SEVERE, &quot;Enable to add review&quot;, ex);</b>
+<b class="nc">&nbsp;            throw new MovieException(&quot;Enable to add review&quot;);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-06 13:12</div>
+</div>
+</body>
+</html>

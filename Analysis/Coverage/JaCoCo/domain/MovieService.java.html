@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">MovieService.java</span></div><h1>MovieService.java</h1><pre class="source lang-java linenums">package domain;
+
+import data.MovieRepository;
+import data.ReviewRepository;
+import data.UserRepository;
+import data.util.Repositories;
+import util.MovieException;
+
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
+
+public class MovieService {
+
+<span class="fc" id="L15">    private static final Logger LOGGER = Logger.getLogger(MovieService.class.getName());</span>
+
+    private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
+    private final MovieRepository movieRepository;
+
+<span class="pc" id="L21">    private User loggedInUser = null;</span>
+
+
+<span class="nc" id="L24">    public MovieService(){</span>
+<span class="nc" id="L25">        userRepository = Repositories.getUserRepository();</span>
+<span class="nc" id="L26">        reviewRepository = Repositories.getReviewRepository();</span>
+<span class="nc" id="L27">        movieRepository = Repositories.getMovieRepository();</span>
+<span class="nc" id="L28">    }</span>
+
+<span class="fc" id="L30">    public MovieService(UserRepository user, ReviewRepository review, MovieRepository movie){</span>
+<span class="fc" id="L31">        this.userRepository = user;</span>
+<span class="fc" id="L32">        this.reviewRepository = review;</span>
+<span class="fc" id="L33">        this.movieRepository = movie;</span>
+<span class="fc" id="L34">    }</span>
+
+
+    private void ensureLoggedIn() {
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">        if(loggedInUser == null){</span>
+<span class="nc" id="L39">            throw new MovieException(&quot;This feature is only available for logged in users.&quot;);</span>
+        }
+<span class="fc" id="L41">    }</span>
+
+    public boolean login(String login, String plainTextPwd){
+<span class="fc" id="L44">        User user = userRepository.getUser(login);</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if(user != null){</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            if(plainTextPwd.compareTo(user.getPassword()) == 0){</span>
+<span class="fc" id="L47">                loggedInUser = user;</span>
+<span class="fc" id="L48">                return true;</span>
+            }
+        }
+<span class="nc" id="L51">        return false;</span>
+    }
+
+
+    public void register(String username, String password) {
+<span class="fc" id="L56">        userRepository.registerNewUser(new User(username, password));</span>
+<span class="fc" id="L57">    }</span>
+
+    public Set&lt;Review&gt; getReviews() {
+<span class="fc" id="L60">        ensureLoggedIn();</span>
+<span class="fc" id="L61">        return reviewRepository.getReviews(loggedInUser.getUsername());</span>
+    }
+
+    public List&lt;Movie&gt; getMovies(String query) {
+<span class="fc" id="L65">        ensureLoggedIn();</span>
+<span class="fc" id="L66">        return movieRepository.getMovies(query);</span>
+    }
+
+    public void addReview(Movie movie, String review, Integer score) {
+<span class="fc" id="L70">        reviewRepository.addReview(movie.getId(), review, score, loggedInUser.getUsername());</span>
+<span class="fc" id="L71">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

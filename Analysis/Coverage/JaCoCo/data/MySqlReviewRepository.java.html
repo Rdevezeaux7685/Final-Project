@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MySqlReviewRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">MySqlReviewRepository.java</span></div><h1>MySqlReviewRepository.java</h1><pre class="source lang-java linenums">package data;
+
+import data.util.MySqlConnection;
+import domain.Movie;
+import domain.Review;
+import domain.User;
+import util.MovieException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+<span class="nc" id="L18">public class MySqlReviewRepository implements ReviewRepository {</span>
+
+<span class="nc" id="L20">    private static final Logger LOGGER = Logger.getLogger(MySqlReviewRepository.class.getName());</span>
+
+    private static final String SQL_SELECT_REVIEWS = &quot;select * from reviews where username = ?&quot;;
+
+    private static final String SQL_INSERT_REVIEW = &quot;insert into reviews (username, movie_id, review, score) values (?, ?, ?, ?)&quot;;
+
+
+    @Override
+    public Set&lt;Review&gt; getReviews(String username) {
+<span class="nc" id="L29">        try (Connection con = MySqlConnection.getConnection();</span>
+<span class="nc" id="L30">             PreparedStatement stmt = con.prepareStatement(SQL_SELECT_REVIEWS)) {</span>
+<span class="nc" id="L31">            stmt.setString(1, username);</span>
+
+<span class="nc" id="L33">            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</span>
+
+<span class="nc" id="L35">            try (ResultSet rs = stmt.executeQuery()) {</span>
+<span class="nc" id="L36">                Set&lt;Review&gt; Review = new HashSet&lt;&gt;();</span>
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                while (rs.next()) {</span>
+<span class="nc" id="L39">                    Review.add(new Review(</span>
+<span class="nc" id="L40">                            rs.getInt(&quot;id&quot;),</span>
+<span class="nc" id="L41">                            rs.getInt(&quot;movie_id&quot;),</span>
+<span class="nc" id="L42">                            rs.getString(&quot;review&quot;),</span>
+<span class="nc" id="L43">                            rs.getInt(&quot;score&quot;)</span>
+                    ));
+                }
+<span class="nc" id="L46">                return Review;</span>
+            }
+<span class="nc" id="L48">        } catch (SQLException ex) {</span>
+<span class="nc" id="L49">            LOGGER.log(Level.SEVERE, &quot;Enable to retrieve reviews&quot;, ex);</span>
+<span class="nc" id="L50">            throw new MovieException(&quot;Enable to retrieve reviews&quot;);</span>
+        }
+    }
+
+    @Override
+    public void addReview(int movieId, String review, Integer score, String username) {
+<span class="nc" id="L56">        try(Connection con = MySqlConnection.getConnection();</span>
+<span class="nc" id="L57">            PreparedStatement stmt = con.prepareStatement(SQL_INSERT_REVIEW)) {</span>
+<span class="nc" id="L58">            LOGGER.log(Level.INFO, &quot;Initiate connection&quot;);</span>
+<span class="nc" id="L59">            stmt.setString(1, username);</span>
+<span class="nc" id="L60">            stmt.setInt(2, movieId);</span>
+<span class="nc" id="L61">            stmt.setString(3, review);</span>
+<span class="nc" id="L62">            stmt.setInt(4, score);</span>
+<span class="nc" id="L63">            stmt.executeUpdate();</span>
+
+<span class="nc" id="L65">        } catch (SQLException ex) {</span>
+<span class="nc" id="L66">            LOGGER.log(Level.SEVERE, &quot;Enable to add review&quot;, ex);</span>
+<span class="nc" id="L67">            throw new MovieException(&quot;Enable to add review&quot;);</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

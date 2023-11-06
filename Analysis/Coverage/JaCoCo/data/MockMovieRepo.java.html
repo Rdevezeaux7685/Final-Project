@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MockMovieRepo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">All in exam_movie.test Coverage Results</a> &gt; <a href="index.source.html" class="el_package">data</a> &gt; <span class="el_source">MockMovieRepo.java</span></div><h1>MockMovieRepo.java</h1><pre class="source lang-java linenums">package data;
+
+import domain.Movie;
+
+import java.util.List;
+
+<span class="fc" id="L7">public class MockMovieRepo implements MovieRepository{</span>
+
+    @Override
+    public List&lt;Movie&gt; getMovies(String query) {
+<span class="fc" id="L11">        return List.of(</span>
+                new Movie(1, &quot;film 1&quot;, &quot;&quot;),
+                new Movie(2, &quot;film 2&quot;, &quot;&quot;),
+                new Movie(3, &quot;film 3&quot;, &quot;&quot;),
+                new Movie(4, &quot;film 4&quot;, &quot;&quot;)
+                );
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
