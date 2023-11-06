@@ -1,6 +1,3 @@
----
-author: Romane Devezeaux de Lavergne
----
 # Final Project: Secure Programming NWMUS 2023
 
 # 1. Analyse the project
