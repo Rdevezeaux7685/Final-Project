@@ -1,0 +1,11 @@
+# .gitignore
+
+# Ignore build folder
+/build/
+
+# Ignore Gradle build files
+.gradle/
+
+# Ignore IntelliJ IDEA files
+.idea/
+
