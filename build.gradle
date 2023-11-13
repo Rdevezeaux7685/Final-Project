@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.13'
-
+    id 'jacoco'
 }
 
 group 'org.example'
@@ -19,8 +19,6 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.31'
     implementation group: 'org.jasypt', name: 'jasypt', version: '1.9.3'
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
-
-
 }
 
 javafx {
@@ -32,6 +30,11 @@ application {
     mainClassName = 'ui.fx.Program'
 }
 
+jacoco {
+    toolVersion = "0.8.7"
+}
+
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
