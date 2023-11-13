@@ -58,7 +58,7 @@ While the gradle plugin on Intilij works perfectly fine, It seems I am unable to
 It is also having the same problem in GitHub actions I created.
 This was fixed by changing the JAVA version to java 17.
 
-#### Fighting with Java
+### Fighting with Java
 
 Adding this %USERS%.jdks\azul-17.0.9\bin to my path to change the version of java and be able to build this from the terminal.
 For the GitHub action, just needed to update the yml file
