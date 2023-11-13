@@ -54,14 +54,18 @@ By putting the 2 reports next to each other, we can directly stop some big diffe
 
 ## Tests
 
-While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION]()
+While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION](#fighting-with-java)
+
 It is also having the same problem in GitHub actions I created.
+
 This was fixed by changing the JAVA version to java 17.
 
 ### Fighting with Java
 
-Adding this %USERS%.jdks\azul-17.0.9\bin to my path to change the version of java and be able to build this from the terminal.
+Adding this `%USERS%.jdks\azul-17.0.9\bi`n to my path to change the version of java and be able to build this from the terminal.
+
 For the GitHub action, just needed to update the yml file
+
 ---
 
 *Presented by: Romane Devezeaux de Lavergne*
