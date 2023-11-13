@@ -1,11 +1,12 @@
 # Final Project: Secure Programming NWMUS 2023
+[![Run JUnit Tests (Gradle)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml/badge.svg)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml)
 
 ## Table of Content
 
 - [Project Analysis](#1-project-analysis)
   - [PMD](#pmd)
   - [Coverage](#coverage)
-
+  - [Test](#Tests)
 ---
 
 ## Project Analysis
@@ -14,7 +15,7 @@
 
 For project analysis, I employed the [PMD Source Code Analyzer](https://pmd.github.io/).
 
-The analysis results can be explored in detail through the following link: [PMD-Report](/Analysis/Coverage/PMD-Report.html)
+The analysis results can be explored in detail through the following link: [PMD-Report](/Analysis/PMD-Report.html)
 
 ![PMD Report](/Analysis/PMD-Report.png)
 
@@ -28,6 +29,7 @@ As one can see on the following screenshots, the coverage was terrible, but wasn
 <summary style="background-color:#3498db; color:#fff;">Intelij Report</summary>
 
 #### Inteliji
+
 
 ![](/Analysis/Coverage/Intelij/Coverage-Report.png)
 
@@ -50,7 +52,16 @@ By putting the 2 reports next to each other, we can directly stop some big diffe
 
 ![](/Analysis/Coverage-compare.png)
 
+## Tests
 
+While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION]()
+It is also having the same problem in GitHub actions I created.
+This was fixed by changing the JAVA version to java 17.
+
+#### Fighting with Java
+
+Adding this %USERS%.jdks\azul-17.0.9\bin to my path to change the version of java and be able to build this from the terminal.
+For the GitHub action, just needed to update the yml file
 ---
 
 *Presented by: Romane Devezeaux de Lavergne*
