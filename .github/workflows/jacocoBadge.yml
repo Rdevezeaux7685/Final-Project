@@ -1,0 +1,20 @@
+name: Generate JaCoCo Badge
+on:
+  workflow_run:
+    workflows: ["Run JUnit Tests (Gradle)"]
+    types:
+      - completed
+
+jobs:
+  generate-badge:
+    name: Generate JaCoCo Badge
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
+          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
