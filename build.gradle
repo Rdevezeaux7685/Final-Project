@@ -22,7 +22,7 @@ dependencies {
 }
 
 javafx {
-    version = "19"
+    version = "11"
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
@@ -32,6 +32,14 @@ application {
 
 jacoco {
     toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = true
+        html.required = true
+    }
 }
 
 test {
