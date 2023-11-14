@@ -2,7 +2,7 @@ package util;
 import org.jasypt.util.text.StrongTextEncryptor;
 import org.mindrot.jbcrypt.BCrypt;
 
-public class Crypto {
+public final class Crypto {
     private static final String KEY = "TEST";
     private static final Crypto INSTANCE = new Crypto();
     private StrongTextEncryptor encryptor = new StrongTextEncryptor();

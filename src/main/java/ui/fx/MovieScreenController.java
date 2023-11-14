@@ -19,9 +19,6 @@ public class MovieScreenController {
 
     private  MovieService service = new MovieService();
 
-    public MovieScreenController() {
-
-    }
     public void setService(MovieService service){
         this.service = service;
         showReview();

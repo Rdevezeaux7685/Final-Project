@@ -6,7 +6,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Config {
+public final class Config {
     private static final String CONFIG_FILE = "/config/config.properties";
     private static final Config INSTANCE = new Config();
     private final Properties properties = new Properties();

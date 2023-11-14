@@ -11,9 +11,6 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 public class MovieService {
-
-    private static final Logger LOGGER = Logger.getLogger(MovieService.class.getName());
-
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
     private final MovieRepository movieRepository;

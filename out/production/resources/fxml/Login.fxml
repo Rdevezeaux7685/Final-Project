@@ -14,7 +14,7 @@
 <VBox
         maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
         fx:controller="ui.fx.LoginScreenController"
-        xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+        xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="559.0">
          <columnConstraints>

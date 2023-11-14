@@ -1,9 +1,7 @@
 package data;
 
 import data.util.MySqlConnection;
-import domain.Movie;
 import domain.Review;
-import domain.User;
 import util.MovieException;
 
 import java.sql.Connection;
@@ -33,17 +31,17 @@ public class MySqlReviewRepository implements ReviewRepository {
             LOGGER.log(Level.INFO, "Initiate connection");
 
             try (ResultSet rs = stmt.executeQuery()) {
-                Set<Review> Review = new HashSet<>();
+                Set<Review> review = new HashSet<>();
 
                 while (rs.next()) {
-                    Review.add(new Review(
+                    review.add(new Review(
                             rs.getInt("id"),
                             rs.getInt("movie_id"),
                             rs.getString("review"),
                             rs.getInt("score")
                     ));
                 }
-                return Review;
+                return review;
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Enable to retrieve reviews", ex);

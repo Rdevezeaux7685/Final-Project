@@ -35,14 +35,14 @@ public class SocketMovieRepository implements MovieRepository {
             if (response instanceof MovieResultMessage) {
                 return ((MovieResultMessage) response).getResults();
             } else {
-                LOGGER.log(Level.INFO, "Server failed: {0}", ((ErrorMessage)response).getMessage());
+                LOGGER.log(Level.INFO, "Server failed:" + ((ErrorMessage)response).getMessage());
                 throw new MovieException( ((ErrorMessage)response).getMessage());
             }
 
 
         } catch (IOException | ClassNotFoundException ex) {
             LOGGER.log(Level.INFO, "Failed to get movies", ex);
-            throw new MovieException("Failed to get movies");
+            throw new MovieException("Failed to get movies\n" + ex);
         }
     }
 }

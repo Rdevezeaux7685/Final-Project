@@ -8,7 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MovieServiceTest {
 
@@ -39,7 +40,7 @@ class MovieServiceTest {
     void addReview() {
         service.addReview(new Movie(1, "some movie", ""), "Amazing", 7);
         service.addReview(new Movie(3, "Heyyy", ""), "qewqewe", 4);
-        assertTrue(service.getReviews().size() == 2);
+        assertEquals(2, service.getReviews().size());
 
     }
 }

@@ -1,6 +1,11 @@
 package data.util;
 
-import data.*;
+import data.MySqlUserRepository;
+import data.UserRepository;
+import data.ReviewRepository;
+import data.MovieRepository;
+import data.MySqlReviewRepository;
+import data.SocketMovieRepository;
 
 
 public class Repositories {

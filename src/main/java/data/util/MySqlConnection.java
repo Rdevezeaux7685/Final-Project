@@ -11,9 +11,9 @@ public class MySqlConnection {
     private static final String KEY_DB_URL= "db.url";
     private static final String KEY_DB_USERNAME= "db.username";
     private static final String KEY_DB_PASSWORD= "db.password";
-    private static String url;
-    private static String username;
-    private static String password;
+    private static final String url;
+    private static final String username;
+    private static final String password;
 
     static {
         String usernameEncrypted = Config.getInstance().readSetting(KEY_DB_USERNAME);

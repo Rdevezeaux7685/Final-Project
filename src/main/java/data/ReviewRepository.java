@@ -1,7 +1,6 @@
 package data;
 
 import domain.Review;
-import domain.User;
 
 import java.util.Set;
 
