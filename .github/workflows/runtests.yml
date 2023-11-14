@@ -10,4 +10,12 @@ jobs:
         with:
           java-version: '17'
       - name: Run Tests
-        run: gradle clean test
+        run: gradle clean
+      - name: Run Test Coverage
+        run: ./gradlew jacocoTestReport
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
+          jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv

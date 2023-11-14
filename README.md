@@ -1,6 +1,8 @@
 # Final Project: Secure Programming NWMUS 2023
 [![Run JUnit Tests (Gradle)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml/badge.svg)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml)
 
+![Coverage](.github/badges/jacoco.svg)
+
 ## Table of Content
 
 - [Project Analysis](#1-project-analysis)
