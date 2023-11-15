@@ -69,11 +69,14 @@ By putting the 2 reports next to each other, we can directly stop some big diffe
 
 ## Tests and GitHub Workflow
 
-While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION](#fighting-with-java)
+My workflow action can be found here:
+[GitHub Actions](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml). The actions are run automatically at every `push`.
 
+
+While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION](#fighting-with-java)
 It is also having the same problem in GitHub actions I created.
 
-This was fixed by changing the JAVA version to java 17.
+**This was fixed by changing the JAVA version to java 17.**
 
 > Jacoco badge instructions: [jacoco-badge-generator](https://github.com/cicirello/jacoco-badge-generator)
 
@@ -82,7 +85,7 @@ This was fixed by changing the JAVA version to java 17.
 
 Adding this `%USERS%.jdks\azul-17.0.9\bin` to my path to change the version of java and be able to build this from the terminal.
 
-For the GitHub action, just needed to update the yml file
+For the GitHub action, just needed to update the yml file (version Java 17)
 
 ---
 
