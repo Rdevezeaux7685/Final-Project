@@ -9,7 +9,6 @@ class ReviewTest {
     @Test
     void testReviewConstructorAndGetters() {
         Review review = new Review(1, "Great movie", 5);
-
         assertEquals(1, review.getMovie());
         assertEquals("Great movie", review.getReview());
         assertEquals(5, review.getScore());
@@ -18,10 +17,7 @@ class ReviewTest {
     @Test
     void testEqualsAndHashCode() {
         Review review1 = new Review(1, "Great movie", 5);
-        Review review2 = new Review(2, "Great movie", 5);
-        Review review3 = new Review(1, "Another movie", 5);
         Review review4 = new Review(1, "Great movie", 5);
-
         assertTrue(review1.equals(review4));
     }
 
