@@ -18,7 +18,6 @@ class MovieResultMessageTest {
         );
 
         MovieResultMessage message = new MovieResultMessage(new ArrayList<>(movies));
-
         assertEquals(movies, message.getResults());
     }
 
@@ -30,8 +29,6 @@ class MovieResultMessageTest {
         );
 
         MovieResultMessage message = new MovieResultMessage(new ArrayList<>(movies));
-
         assertEquals("MovieResultMessage{results=" + movies + '}', message.toString());
-
     }
 }
