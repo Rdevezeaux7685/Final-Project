@@ -52,6 +52,11 @@ Html report can be found here: [Jacoco report](/Analysis/Coverage/JaCoCo)
 
 By putting the 2 reports next to each other, we can directly stop some big difference of result, especially for the **data**
 
+I have added a GitHub workflow that make a Jacoco report at every push, I also provide a percentage badge that was put in the beginning of this README.
+
+This is the original badge before I made the tests.
+![img.png](Analysis/Coverage/JaCoCo/jacocobadge.png)
+
 ![](/Analysis/Coverage-compare.png)
 
 ## Tests
