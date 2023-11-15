@@ -26,12 +26,9 @@ public final class Config {
         return INSTANCE;
     }
 
-    public String readSetting(String key, String defaultValue) {
-        return properties.getProperty(key, defaultValue);
+    public String readSetting(String key) {
+        return properties.getProperty(key, null);
     }
 
-    public String readSetting(String key) {
-        return readSetting(key, null);
-    }
 
 }
