@@ -23,12 +23,4 @@ public final class Crypto {
         return encryptor.decrypt(in);
     }
 
-    public String hash(String in) {
-        return BCrypt.hashpw(in, BCrypt.gensalt());
-    }
-
-    public boolean comparePasswords(String in, String hashed) {
-        return BCrypt.checkpw(in, hashed);
-    }
-
 }
