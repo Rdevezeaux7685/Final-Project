@@ -1,0 +1,7 @@
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\data\SocketMovieRepository.java:24:	AvoidUsingHardCodedIP:	Do not hard code the IP address ${variableName}
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\data\SocketMovieRepository.java:25:	CloseResource:	Ensure that resources like this ObjectOutputStream object are closed after use
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\data\SocketMovieRepository.java:26:	CloseResource:	Ensure that resources like this ObjectInputStream object are closed after use
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\util\cli\Program.java:9:	UseUtilityClass:	This utility class has a non-private constructor
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\util\cli\Program.java:13:	GuardLogStatement:	Logger calls should be surrounded by log level guards.
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\util\cli\Program.java:14:	GuardLogStatement:	Logger calls should be surrounded by log level guards.
+C:\Users\romane\Documents\NW 2023\SP project\src\main\java\util\cli\Program.java:15:	GuardLogStatement:	Logger calls should be surrounded by log level guards.

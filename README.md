@@ -115,6 +115,15 @@ Here is the **PMD-approved** version:
 
 My `ErrorMessage` class was initially designed to return simple strings, providing minimal information in case of a code failure and exception.  PMD suggested keeping the caught exception and including it in the `ErrorMessage`. However, this approach raises concerns about confidentiality (CIA: Confidentiality, Integrity, Availability).
 
+### PMD New report:
+
+The new report made after improvements can be found [here](/Improvement/pmd-report.txt)
+![](/Improvement/pmd.png)
+
+_(The project has been relocated on my computer, resulting in a different file path compared to the previous report. However, the project itself remains the same)_
+
+
+
 ---
 
 *Written by: Romane Devezeaux de Lavergne*
