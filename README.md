@@ -14,8 +14,8 @@
       - [Exclude Class/Methods](#exclude-classmethods)
   - [1.3 Tests](#13-tests-and-github-workflow)
   - [1.4 Fighting with Java](#14-fighting-with-java)
-- [2. Improvement](#2-improvement-)
-  - [2.1 Tests](#21-tests-)
+- [2. Improvement](#2-improvement)
+  - [2.1 Tests](#21-tests)
   - [2.2 Database / SQL](#22-database--sql)
   - [2.3 Input Validation](#23-input-validation)
 
