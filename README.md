@@ -8,10 +8,10 @@
 - [Project Analysis](#1-project-analysis)
   - [PMD](#pmd)
   - [Coverage](#coverage)
-    - [IntelliJ](#intellij)
+    - [IntelliJ](#inteliji)
     - [JaCoCo](#jacoco)
       - [Exclude Class/Methods](#exclude-classmethods)
-  - [Tests](#tests)
+  - [Tests](#tests-and-github-workflow)
     - [Fighting with Java](#fighting-with-java)
     
 
@@ -24,6 +24,8 @@
 For project analysis, I employed the [PMD Source Code Analyzer](https://pmd.github.io/).
 
 The analysis results can be explored in detail through the following link: [PMD-Report](/Analysis/PMD-Report.html)
+
+
 
 ![PMD Report](/Analysis/PMD-Report.png)
 
@@ -73,7 +75,7 @@ My workflow action can be found here:
 [GitHub Actions](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml). The actions are run automatically at every `push`.
 
 
-While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. [SOLUTION](#fighting-with-java)
+While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. 
 It is also having the same problem in GitHub actions I created.
 
 **This was fixed by changing the JAVA version to java 17.**

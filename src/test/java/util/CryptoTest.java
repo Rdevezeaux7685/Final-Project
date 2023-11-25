@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CryptoTest {
 
-    String username;
-    Crypto crypto;
+    public String username;
+    public Crypto crypto;
 
     @BeforeEach
     void setUp() {
@@ -17,7 +17,7 @@ class CryptoTest {
     }
 
     @Test
-    void testEncrypt() {
+    public void testEncrypt() {
         assertNotEquals(username, crypto.encrypt(username));
         assertNotEquals(crypto.encrypt("test"), crypto.encrypt(username));
     }
