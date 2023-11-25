@@ -1,94 +1,101 @@
 # Final Project: Secure Programming NWMUS 2023
+
 [![Run JUnit Tests (Gradle)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml/badge.svg)](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml)
 
 ![Coverage](.github/badges/jacoco.svg)
 
 ## Table of Contents
 
-- [Project Analysis](#1-project-analysis)
-  - [PMD](#pmd)
-  - [Coverage](#coverage)
-    - [IntelliJ](#inteliji)
-    - [JaCoCo](#jacoco)
+- [1. Project Analysis](#1-project-analysis)
+  - [1.1 PMD](#11-pmd)
+  - [1.2 Coverage](#12-coverage)
+    - [1.2.1 IntelliJ](#121-intellij)
+    - [1.2.2 JaCoCo](#122-jacoco)
       - [Exclude Class/Methods](#exclude-classmethods)
-  - [Tests](#tests-and-github-workflow)
-    - [Fighting with Java](#fighting-with-java)
-    
+  - [1.3 Tests](#13-tests-and-github-workflow)
+  - [1.4 Fighting with Java](#14-fighting-with-java)
+- [2. Improvement](#2-improvement-)
+  - [2.1 Tests](#21-tests-)
+  - [2.2 Database / SQL](#22-database--sql)
+  - [2.3 Input Validation](#23-input-validation)
 
 ---
 
-# Project Analysis
+# 1. Project Analysis
 
-## PMD
+## 1.1 PMD
 
 For project analysis, I employed the [PMD Source Code Analyzer](https://pmd.github.io/).
 
-The analysis results can be explored in detail through the following link: [PMD-Report](/Analysis/PMD-Report.html)
-
-
+Explore the detailed analysis results [here](/Analysis/PMD-Report.html).
 
 ![PMD Report](/Analysis/PMD-Report.png)
 
+## 1.2 Coverage
 
-## Coverage
+I will be using both **IntelliJ Building Coverage** and **JaCoCo**. As seen in the following screenshots, the coverage was not perfect but not at 0, which is a positive sign.
 
-I will be firstly using both <span style="background-color:#3498db; color:#fff;">Intelij Building Coverage</span> and <span style="background-color:#e74c3c; color:#fff;">Jacoco</span>
-As one can see on the following screenshots, the coverage was terrible, but wasn't at 0, which is already, something.
+### 1.2.1 IntelliJ
 
+![IntelliJ Coverage Report](/Analysis/Coverage/Intelij/Coverage-Report.png)
 
-### Inteliji
+Html report can be found [here](/Analysis/Coverage/IntelliJ).
 
+### 1.2.2 JaCoCo
 
-![](/Analysis/Coverage/Intelij/Coverage-Report.png)
+![JaCoCo Coverage Report](/Analysis/Coverage/JaCoCo/jacoco-report.png)
 
-Html report can be found here: [Intelij report](/Analysis/Coverage/Intelij)
+Html report can be found [here](/Analysis/Coverage/JaCoCo).
 
-
-### Jacoco
-
-![](/Analysis/Coverage/JaCoCo/jacoco-report.png)
-
-Html report can be found here: [Jacoco report](/Analysis/Coverage/JaCoCo)
-
-
-I have added a GitHub workflow that make a Jacoco report at every push, I also provide a percentage badge that was put in the beginning of this README.
-
-This is the original badge before I made the tests.
-![img.png](Analysis/Coverage/JaCoCo/jacocobadge.png)
+I have added a GitHub workflow that creates a JaCoCo report with every push, along with a percentage badge at the beginning of this README. The original badge before adding the tests can be seen ![here](Analysis/Coverage/JaCoCo/jacocobadge.png).
 
 #### Exclude Class/Methods
 
-To exclude classes and/or methods from the Jacoco report, I have added the @Generated annotation following the instruction in this source [Exclusions from Jacoco Report](https://www.baeldung.com/jacoco-report-exclude)
-
-
+To exclude classes and/or methods from the JaCoCo report, I added the `@Generated` annotation, following the instructions in this [Source: Jacoco report exclude](https://www.baeldung.com/jacoco-report-exclude).
 
 ---
 
-By putting the 2 reports next to each other, we can directly stop some big difference of result, especially for the **data**
+By putting the two reports next to each other, we can directly observe significant differences in results, especially for the **data**.
 
-![](/Analysis/Coverage-compare.png)
+![Coverage Comparison](/Analysis/Coverage-compare.png)
 
+---
 
-## Tests and GitHub Workflow
+## 1.3 Tests and GitHub Workflow
 
-My workflow action can be found here:
-[GitHub Actions](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml). The actions are run automatically at every `push`.
+Find my workflow action [here](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml). 
+The actions run automatically with every push.
 
-
-While the gradle plugin on Intilij works perfectly fine, It seems I am unable to use ./gradlew from the terminal. 
-It is also having the same problem in GitHub actions I created.
-
-**This was fixed by changing the JAVA version to java 17.**
+While the Gradle plugin in IntelliJ works perfectly fine, I encountered issues using `./gradlew` from the terminal. 
+his problem was resolved by changing the JAVA version to Java 17.
 
 > Jacoco badge instructions: [jacoco-badge-generator](https://github.com/cicirello/jacoco-badge-generator)
 
+### 1.4 Fighting with Java
 
-#### Fighting with Java
+Adding `%USERS%.jdks\azul-17.0.9\bin` to my path helped change the Java version, enabling building from the terminal. 
+For the GitHub action, updating the YAML file to use Java 17 resolved the issue.
 
-Adding this `%USERS%.jdks\azul-17.0.9\bin` to my path to change the version of java and be able to build this from the terminal.
+# 2 Improvement
 
-For the GitHub action, just needed to update the yml file (version Java 17)
+## 2.1 Tests
+
+Basic tests were added to the project using the IntelliJ built-in test generator. 
+I added tests for the `domain` classes and the `util/cli` and `util`. 
+Although these tests improved project coverage, they do not cover every possible outcome and could be enhanced.
+
+![Generate Tests](Analysis/generate-test.png)
+
+## 2.2 Database / SQL
+
+The SQL classes were already covering the security advice provided in class. 
+Usernames/passwords are **encrypted** and not used as plaintext. 
+Encryption files can be found in `/util`, and the configuration file for the database is in `resource/config/config.properties`. I used **prepared statements** and `stmt.setString` to protect the data and prevent potential SQL injections.
+
+## 2.3 Input Validation
+
+Currently, there is no input validation. This will be updated soon.
 
 ---
 
-*Presented by: Romane Devezeaux de Lavergne*
+*Written by: Romane Devezeaux de Lavergne*
