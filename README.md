@@ -97,7 +97,23 @@ Encryption files can be found in `/util`, and the configuration file for the dat
 
 ## 2.3 Input Validation
 
-Currently, there is no input validation. This will be updated soon.
+Currently, there is no input validation, but this will be addressed in an upcoming update.
+
+## 2.3 PMD
+
+### 2.3.1 One-line If/Else
+
+Upon reviewing the PMD report, some issues were identified. For instance, PMD considers having an `if` statement on one line without braces as an error.
+
+Initially, I did not agree with this and had to add braces:
+![Not Approved by PMD](/Analysis/pmd-not-ok.png)
+
+Here is the **PMD-approved** version:
+![PMD Approved](/Analysis/pmd-ok.png)
+
+### 2.3.2 Error Messages
+
+My `ErrorMessage` class was initially designed to return simple strings, providing minimal information in case of a code failure and exception.  PMD suggested keeping the caught exception and including it in the `ErrorMessage`. However, this approach raises concerns about confidentiality (CIA: Confidentiality, Integrity, Availability).
 
 ---
 
