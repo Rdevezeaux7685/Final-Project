@@ -17,8 +17,11 @@
 - [2. Improvement](#2-improvement)
   - [2.1 Tests](#21-tests)
   - [2.2 Database / SQL](#22-database--sql)
-  - [2.3 Input Validation](#23-input-validation)
-
+    - [2.3 Input Validation](#23-input-validation)
+  - [2.3 PMD](#23-pmd)
+    - [2.3.1 One-line If/Else](#231-one-line-ifelse)
+    - [2.3.2 Error Messages](#232-error-messages)
+    - [2.3.3 PMD New report](#233-pmd-new-report)
 ---
 
 # 1. Project Analysis
@@ -115,7 +118,7 @@ Here is the **PMD-approved** version:
 
 My `ErrorMessage` class was initially designed to return simple strings, providing minimal information in case of a code failure and exception.  PMD suggested keeping the caught exception and including it in the `ErrorMessage`. However, this approach raises concerns about confidentiality (CIA: Confidentiality, Integrity, Availability).
 
-### PMD New report:
+## 2.3.3 PMD New report:
 
 The new report made after improvements can be found [here](/Improvement/pmd-report.txt)
 ![](/Improvement/pmd.png)
