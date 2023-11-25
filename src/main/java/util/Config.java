@@ -18,7 +18,7 @@ public final class Config {
         } catch (IOException ex) {
             LOGGER.log(Level.SEVERE,
                     "Unable to read config file", ex);
-            throw new MovieException("Unable to load configuration.");
+            throw new MovieException("Unable to load configuration.: ", ex);
         }
     }
 

@@ -1,18 +1,17 @@
 package messages;
 
 import domain.Movie;
-
-import java.util.ArrayList;
+import java.util.List;
 
 public class MovieResultMessage extends Message {
 
-    private final ArrayList<Movie> results;
+    private final List<Movie> results;
 
-    public MovieResultMessage(ArrayList<Movie> results) {
+    public MovieResultMessage(List<Movie> results) {
         this.results = results;
     }
 
-    public ArrayList<Movie> getResults() {
+    public List<Movie> getResults() {
         return results;
     }
 

@@ -45,7 +45,7 @@ public class MySqlReviewRepository implements ReviewRepository {
             }
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Enable to retrieve reviews", ex);
-            throw new MovieException("Enable to retrieve reviews");
+            throw new MovieException("Enable to retrieve reviews: ", ex);
         }
     }
 
@@ -62,7 +62,7 @@ public class MySqlReviewRepository implements ReviewRepository {
 
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Enable to add review", ex);
-            throw new MovieException("Enable to add review");
+            throw new MovieException("Enable to add review:", ex);
         }
     }
 }

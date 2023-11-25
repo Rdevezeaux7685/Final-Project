@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 
 public class SocketMovieRepository implements MovieRepository {
 
-
     private static final Logger LOGGER = Logger.getLogger(SocketMovieRepository.class.getName());
 
     @Override
@@ -35,14 +34,15 @@ public class SocketMovieRepository implements MovieRepository {
             if (response instanceof MovieResultMessage) {
                 return ((MovieResultMessage) response).getResults();
             } else {
-                LOGGER.log(Level.INFO, "Server failed:" + ((ErrorMessage)response).getMessage());
+                if (LOGGER.isLoggable(Level.INFO)) {
+                    LOGGER.log(Level.INFO, "Server failed: {}", ((ErrorMessage) response).getMessage());
+                }
                 throw new MovieException( ((ErrorMessage)response).getMessage());
             }
 
-
         } catch (IOException | ClassNotFoundException ex) {
             LOGGER.log(Level.INFO, "Failed to get movies", ex);
-            throw new MovieException("Failed to get movies\n" + ex);
+            throw new MovieException("Failed to get movies\n", ex);
         }
     }
 }

@@ -27,6 +27,9 @@
 
 For project analysis, I employed the [PMD Source Code Analyzer](https://pmd.github.io/).
 
+> pmd.bat check -d "C:\Users\romane\Documents\NW 2023\SP project"  -R rulesets/java/quickstart.xml -f html > C:\Users\romane\Desktop\testPMD.html
+> 
+> 
 Explore the detailed analysis results [here](/Analysis/PMD-Report.html).
 
 ![PMD Report](/Analysis/PMD-Report.png)

@@ -1,6 +1,8 @@
 package messages;
-
 import java.io.Serializable;
 
-public abstract class Message implements Serializable {
+public class Message implements Serializable {
+    public static Message createMessage() {
+        return new Message();
+    }
 }

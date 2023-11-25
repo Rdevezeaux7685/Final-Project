@@ -1,6 +1,5 @@
 package util;
 import org.jasypt.util.text.StrongTextEncryptor;
-import org.mindrot.jbcrypt.BCrypt;
 
 public final class Crypto {
     private static final String KEY = "TEST";

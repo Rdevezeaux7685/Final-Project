@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MySqlConnection {
+public final class MySqlConnection {
     private static final String KEY_DB_URL= "db.url";
     private static final String KEY_DB_USERNAME= "db.username";
     private static final String KEY_DB_PASSWORD= "db.password";

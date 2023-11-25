@@ -8,7 +8,7 @@ import data.MySqlReviewRepository;
 import data.SocketMovieRepository;
 
 
-public class Repositories {
+public final class Repositories {
     private static final UserRepository USER_REPOSITORY = new MySqlUserRepository();
     private static final ReviewRepository REVIEW_REPOSITORY = new MySqlReviewRepository();
     private static final MovieRepository MOVIE_REPOSITORY = new SocketMovieRepository();

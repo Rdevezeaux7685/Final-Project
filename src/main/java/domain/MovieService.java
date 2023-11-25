@@ -8,7 +8,6 @@ import util.MovieException;
 
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 public class MovieService {
     private final UserRepository userRepository;

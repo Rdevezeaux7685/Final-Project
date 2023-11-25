@@ -38,7 +38,7 @@ public class MySqlUserRepository implements UserRepository{
 
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Enable to get user", ex);
-            throw new MovieException("Enable to get user");
+            throw new MovieException("Enable to get user: ", ex);
         }
     }
 
@@ -53,7 +53,7 @@ public class MySqlUserRepository implements UserRepository{
             stmt.executeUpdate();
         } catch (SQLException ex) {
             LOGGER.log(Level.SEVERE, "Enable to add user", ex);
-            throw new MovieException("Enable to add user");
+            throw new MovieException("Enable to add user: ", ex);
         }
     }
 }

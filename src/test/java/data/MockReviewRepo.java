@@ -5,7 +5,6 @@ import domain.User;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class MockReviewRepo implements ReviewRepository{
@@ -17,8 +16,9 @@ public class MockReviewRepo implements ReviewRepository{
 
     @Override
     public Set<Review> getReviews(String username) {
-        if(username.equals(loggedIn.getUsername()))
+        if(username.equals(loggedIn.getUsername())) {
             return reviews;
+        }
         return Collections.emptySet();
     }
 

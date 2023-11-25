@@ -13,7 +13,6 @@ public class Program extends Application {
         launch(args);
     }
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("i22");
