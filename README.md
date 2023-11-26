@@ -12,7 +12,7 @@
     - [1.2.1 IntelliJ](#121-intellij)
     - [1.2.2 JaCoCo](#122-jacoco)
       - [Exclude Class/Methods](#exclude-classmethods)
-  - [1.3 Tests](#13-tests-and-github-workflow)
+  - [1.3 Automated Test And GitHub Actions](#13-tests-and-github-workflow)
   - [1.4 Fighting with Java](#14-fighting-with-java)
 - [2. Improvement](#2-improvement)
   - [2.1 Tests](#21-tests)
@@ -85,7 +85,7 @@ By putting the two reports next to each other, we can directly observe significa
 
 ---
 
-## 1.3 Tests and GitHub Workflow
+## 1.3 Automated Test And GitHub Actions
 
 Find my workflow action [here](https://github.com/Rdevezeaux7685/Final-Project/actions/workflows/runtests.yml). 
 The actions run automatically with every push.
