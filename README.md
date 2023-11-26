@@ -146,6 +146,18 @@ The new report made after improvements can be found [here](/Review/pmd-report.tx
 
 _(The project has been relocated on my computer, resulting in a different file path compared to the previous report. However, the project itself remains the same)_
 
+## 2.4 Coverage
+
+As visible on the badge at the top of the guide. The general coverage was greatly improved.
+This is the new Jacoco report after adding test.
+
+![](Review/jacoco-report.png)
+
+A new Jacoco report was added [here](/Review/jacoco)
+
+Some test should be added on the socket. This is mentioned here [3.4 Reflection](#34-reflection)
+
+
 
 ---
 

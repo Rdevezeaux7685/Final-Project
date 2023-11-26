@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovieService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">exam_movie</a> &gt; <a href="index.source.html" class="el_package">domain</a> &gt; <span class="el_source">MovieService.java</span></div><h1>MovieService.java</h1><pre class="source lang-java linenums">package domain;
+
+import data.MovieRepository;
+import data.ReviewRepository;
+import data.UserRepository;
+import data.util.Repositories;
+import util.MovieException;
+
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class MovieService {
+    private final UserRepository userRepository;
+    private final ReviewRepository reviewRepository;
+    private final MovieRepository movieRepository;
+    private static final String USERNAME_PATTERN = &quot;^[a-zA-Z][a-zA-Z0-9]{2,15}$&quot;;
+<span class="fc" id="L19">    private static final Pattern usernamePattern = Pattern.compile(USERNAME_PATTERN);</span>
+
+    private static final String PASSWORD_PATTERN = &quot;^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$&quot;;
+<span class="fc" id="L22">    private static final Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);</span>
+<span class="pc" id="L23">    private User loggedInUser = null;</span>
+
+
+
+    public boolean usernameValidation(String username){
+<span class="fc" id="L28">        Matcher matcher = usernamePattern.matcher(username);</span>
+<span class="fc" id="L29">        return matcher.matches();</span>
+    }
+
+    public boolean passwordValidation(String password){
+<span class="fc" id="L33">        Matcher matcher = passwordPattern.matcher(password);</span>
+<span class="fc" id="L34">        return matcher.matches();</span>
+    }
+
+<span class="nc" id="L37">    public MovieService(){</span>
+<span class="nc" id="L38">        userRepository = Repositories.getUserRepository();</span>
+<span class="nc" id="L39">        reviewRepository = Repositories.getReviewRepository();</span>
+<span class="nc" id="L40">        movieRepository = Repositories.getMovieRepository();</span>
+<span class="nc" id="L41">    }</span>
+
+<span class="fc" id="L43">    public MovieService(UserRepository user, ReviewRepository review, MovieRepository movie){</span>
+<span class="fc" id="L44">        this.userRepository = user;</span>
+<span class="fc" id="L45">        this.reviewRepository = review;</span>
+<span class="fc" id="L46">        this.movieRepository = movie;</span>
+<span class="fc" id="L47">    }</span>
+
+
+    private void ensureLoggedIn() {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if(loggedInUser == null){</span>
+<span class="fc" id="L52">            throw new MovieException(&quot;This feature is only available for logged in users.&quot;);</span>
+        }
+<span class="fc" id="L54">    }</span>
+
+    public boolean login(String login, String plainTextPwd){
+<span class="fc" id="L57">        User user = userRepository.getUser(login);</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">        if(user != null){</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if(plainTextPwd.compareTo(user.getPassword()) == 0){</span>
+<span class="fc" id="L60">                loggedInUser = user;</span>
+<span class="fc" id="L61">                return true;</span>
+            }
+        }
+<span class="fc" id="L64">        return false;</span>
+    }
+
+
+    public void register(String username, String password) {
+<span class="fc" id="L69">        userRepository.registerNewUser(new User(username, password));</span>
+<span class="fc" id="L70">    }</span>
+
+    public Set&lt;Review&gt; getReviews() {
+<span class="fc" id="L73">        ensureLoggedIn();</span>
+<span class="fc" id="L74">        return reviewRepository.getReviews(loggedInUser.getUsername());</span>
+    }
+
+    public List&lt;Movie&gt; getMovies(String query) {
+<span class="fc" id="L78">        ensureLoggedIn();</span>
+<span class="fc" id="L79">        return movieRepository.getMovies(query);</span>
+    }
+
+    public void addReview(Movie movie, String review, Integer score) {
+<span class="fc" id="L83">        reviewRepository.addReview(movie.getId(), review, score, loggedInUser.getUsername());</span>
+<span class="fc" id="L84">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
