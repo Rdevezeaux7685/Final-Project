@@ -22,6 +22,7 @@
     - [2.3.1 One-line If/Else](#231-one-line-ifelse)
     - [2.3.2 Error Messages](#232-error-messages)
     - [2.3.3 PMD New report](#233-pmd-new-report)
+
 ---
 
 # 1. Project Analysis
@@ -100,7 +101,13 @@ Encryption files can be found in `/util`, and the configuration file for the dat
 
 ## 2.3 Input Validation
 
-Currently, there is no input validation, but this will be addressed in an upcoming update.
+There _was no input validation_.
+
+As there is not much input that can be tested, I have done input validation on the **registration** and **login** of a **user**.
+
+Appropriate error messages where added.
+![](Improvement/password.png)
+![](Improvement/username.png)
 
 ## 2.3 PMD
 
@@ -124,8 +131,6 @@ The new report made after improvements can be found [here](/Improvement/pmd-repo
 ![](/Improvement/pmd.png)
 
 _(The project has been relocated on my computer, resulting in a different file path compared to the previous report. However, the project itself remains the same)_
-
-
 
 ---
 
