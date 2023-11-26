@@ -15,9 +15,11 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import util.Generated;
 import util.MovieException;
 
 
+@Generated
 public class MovieScreenController {
 
     private  MovieService service = new MovieService();
