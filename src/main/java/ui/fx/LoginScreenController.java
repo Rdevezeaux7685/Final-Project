@@ -41,12 +41,10 @@ public class LoginScreenController {
 
     @FXML
     void onLogin(ActionEvent event) {
-
-        if(service.login(txtUsername.getText(), txtPassword.getText())) {
+        if (service.login(txtUsername.getText(), txtPassword.getText())) {
             lblErrorMessage.setText("User logged in");
             showMainScreen(event2stage(event), service);
-        }
-        else {
+        } else {
             lblErrorMessage.setText("Invalid username and/or password. Please try again");
         }
     }
@@ -70,18 +68,29 @@ public class LoginScreenController {
             stage.setScene(scene);
             stage.show();
 
-        } catch (IOException e){
+        } catch (IOException e) {
             LOGGER.log(Level.WARNING, "Failed to open the main screen", e);
             lblErrorMessage.setText("Failed to open the main screen");
         }
     }
 
 
-
     @FXML
     void onRegister(ActionEvent event) {
-        service.register(txtUsername.getText(), txtPassword.getText());
-        lblErrorMessage.setText("User created");
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        if (!service.usernameValidation(username)) {
+            lblErrorMessage.setText("The username format is not valid. \n Letter and numbers only. \n Cannot start by number.");
+        }
+        else if (!service.passwordValidation(password)) {
+            lblErrorMessage.setText("The password format is not valid. \nPassword requirement: \n\n - At least 8 characters.\n - Contains at least one uppercase letter, one lowercase letter, and one digit.");
+        }
+        else
+        {
+            service.register(txtUsername.getText(), txtPassword.getText());
+            lblErrorMessage.setText("User created");
+        }
+
     }
 
     @FXML
@@ -89,7 +98,6 @@ public class LoginScreenController {
         assert lblErrorMessage != null : "fx:id=\"lblErrorMessage\" was not injected: check your FXML file 'Login.fxml'.";
         assert txtPassword != null : "fx:id=\"txtPassword\" was not injected: check your FXML file 'Login.fxml'.";
         assert txtUsername != null : "fx:id=\"txtUsername\" was not injected: check your FXML file 'Login.fxml'.";
-
     }
 
 }
