@@ -8,14 +8,31 @@ import util.MovieException;
 
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MovieService {
     private final UserRepository userRepository;
     private final ReviewRepository reviewRepository;
     private final MovieRepository movieRepository;
+    private static final String USERNAME_PATTERN = "^[a-zA-Z][a-zA-Z0-9]{2,15}$";
+    private static final Pattern usernamePattern = Pattern.compile(USERNAME_PATTERN);
 
+    private static final String PASSWORD_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+    private static final Pattern passwordPattern = Pattern.compile(PASSWORD_PATTERN);
     private User loggedInUser = null;
 
+
+
+    public boolean usernameValidation(String username){
+        Matcher matcher = usernamePattern.matcher(username);
+        return matcher.matches();
+    }
+
+    public boolean passwordValidation(String password){
+        Matcher matcher = passwordPattern.matcher(password);
+        return matcher.matches();
+    }
 
     public MovieService(){
         userRepository = Repositories.getUserRepository();
