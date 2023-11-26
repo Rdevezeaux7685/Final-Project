@@ -53,7 +53,7 @@ For project analysis, I employed the [PMD Source Code Analyzer](https://pmd.gith
 > 
 Explore the detailed analysis results [here](/Analysis/PMD-Report.html).
 
-![PMD Report](/Analysis/PMD-Report.png)
+![PMD Report](Analysis/PMD-Report.png)
 
 ## 1.2 Coverage
 
@@ -61,13 +61,13 @@ I will be using both **IntelliJ Building Coverage** and **JaCoCo**. As seen in t
 
 ### 1.2.1 IntelliJ
 
-![IntelliJ Coverage Report](/Analysis/Coverage/Intelij/Coverage-Report.png)
+![IntelliJ Coverage Report](Analysis/Coverage/Intelij/Coverage-Report.png)
 
-Html report can be found [here](/Analysis/Coverage/IntelliJ).
+Html report can be found [here](/Analysis/Coverage/Intelij).
 
 ### 1.2.2 JaCoCo
 
-![JaCoCo Coverage Report](/Analysis/Coverage/JaCoCo/jacoco-report.png)
+![JaCoCo Coverage Report](Analysis/Coverage/JaCoCo/jacoco-report.png)
 
 Html report can be found [here](/Analysis/Coverage/JaCoCo).
 
@@ -81,7 +81,7 @@ To exclude classes and/or methods from the JaCoCo report, I added the `@Generate
 
 By putting the two reports next to each other, we can directly observe significant differences in results, especially for the **data**.
 
-![Coverage Comparison](/Analysis/Coverage-compare.png)
+![Coverage Comparison](Analysis/Coverage-compare.png)
 
 ---
 
@@ -128,10 +128,10 @@ Appropriate error messages where added.
 Upon reviewing the PMD report, some issues were identified. For instance, PMD considers having an `if` statement on one line without braces as an error.
 
 Initially, I did not agree with this and had to add braces:
-![Not Approved by PMD](/Analysis/pmd-not-ok.png)
+![Not Approved by PMD](Analysis/pmd-not-ok.png)
 
 Here is the **PMD-approved** version:
-![PMD Approved](/Analysis/pmd-ok.png)
+![PMD Approved](Analysis/pmd-ok.png)
 
 ### 2.3.2 Error Messages
 
@@ -140,8 +140,9 @@ My `MovieException` class was initially designed to return simple strings, PMD s
 
 ## 2.3.3 PMD New report
 
-The new report made after improvements can be found [here](/Review/pmd-report.txt)
-![](/Review/pmd.png)
+The new report made after improvements can be found [here](Review/pmd-report.txt)
+
+![](Review/pmd.png)
 
 _(The project has been relocated on my computer, resulting in a different file path compared to the previous report. However, the project itself remains the same)_
 
@@ -157,9 +158,7 @@ A new Jacoco report was added [here](/Review/jacoco)
 Some test should be added on the socket. This is mentioned here [3.4 Reflection](#34-reflection)
 
 
-
 ---
-
 
 # 3. Review
 
