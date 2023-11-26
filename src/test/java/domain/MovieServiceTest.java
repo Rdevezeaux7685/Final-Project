@@ -64,4 +64,16 @@ class MovieServiceTest {
         service.addReview(new Movie(3, "Heyyy", ""), "qewqewe", 4);
         assertEquals(2, service.getReviews().size());
     }
+
+    @Test
+    void inputValidation(){
+        String validUsername = "romane12";
+        String validPassword = "Qwerty123!";
+        String invalidUsername = "romane-12";
+        String invalidPassword = "bad";
+        assertFalse(service.usernameValidation(invalidUsername));
+        assertFalse(service.passwordValidation(invalidPassword));
+        assertTrue(service.passwordValidation(validPassword));
+        assertTrue(service.usernameValidation(validUsername));
+    }
 }
